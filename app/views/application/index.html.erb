@@ -1,5 +1,13 @@
-<h2>Upload Page</h2>
+<h3>upload a photo</h3>
 
+  <%= link_to "somethign", uploaded_url, method: :post %>
+
+  <p><%= s3_uploader_form callback_url: "google.com", callback_method: "POST", callback_param: "upload[image_url]", id: "s3-uploader" do %></p>
+    <%= hidden_field_tag  "Content-Type", "" %>
+    <%= file_field_tag :file, multiple: true %><br>
+
+    <!-- <input type='submit' value='submit'> -->
+  <% end %>
 
 
 

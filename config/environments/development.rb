@@ -26,4 +26,15 @@ Imgapp::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  #aws credentials
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => "rentspaces",
+    :access_key_id => "",
+    :secret_access_key => ""
+  }
+}
+
 end

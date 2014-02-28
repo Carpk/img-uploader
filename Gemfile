@@ -6,6 +6,11 @@ gem 'rails', '4.0.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# gems for loading photos
+gem 'aws-sdk' # S3 API
+gem 'paperclip' # file attachment syntax and callbacks
+gem 's3_direct_upload' # direct upload form helper and assests
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

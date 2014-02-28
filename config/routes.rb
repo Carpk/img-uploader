@@ -4,6 +4,8 @@ Imgapp::Application.routes.draw do
 
   root 'application#index'
 
+  post 'uploaded' => 'application#view', as: 'uploaded'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -17,7 +19,10 @@ Imgapp::Application.routes.draw do
   # OMG READ THIS, THESE ARE IMPORTANT NOTES!!!!!!!!
 
   # no local storage with heroku, need to use amazon s3 or cloudinary
-  # mini_magick - look into it
+  # mini_magick instead of rmagick- look into it
+  # Heroku has an explicit 30 second http timeout
+
+  # video: http://railscasts.com/episodes/182-cropping-images
 
 
   # CDN (Content Delivery Network):
@@ -30,5 +35,20 @@ Imgapp::Application.routes.draw do
   # cloudinary gem
   # carrierwave gem (handles automatic uploading to CDN and database storage)
 
+  # WORKFLOW with paperclip and s3_upload
+  # User uploads their file directly to a temporary directory on S3
+  # A form callback posts the temporary file URL to our app
+  # Our app creates a new Document object, sets some initial data from the temporary S3 file, then queues a background process to move the temporary file to the location that Paperclip expects it to be and to process thumbnails if required
+  # Show users a message if they visit a file page while its still being processed
+
+  # ORIGINAL CORS CONFIG:
+  # <CORSConfiguration>
+  #     <CORSRule>
+  #         <AllowedOrigin>*</AllowedOrigin>
+  #         <AllowedMethod>GET</AllowedMethod>
+  #         <MaxAgeSeconds>3000</MaxAgeSeconds>
+  #         <AllowedHeader>Authorization</AllowedHeader>
+  #     </CORSRule>
+  # </CORSConfiguration>
 
 end
